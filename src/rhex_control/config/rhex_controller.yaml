@@ -1,0 +1,24 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    position_controllers:
+      type: position_controllers/JointGroupPositionController
+
+position_controllers:
+  ros__parameters:
+    joints:
+      - L_FL
+      - L_FR
+      - L_ML
+      - L_MR
+      - L_RL
+      - L_RR
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity

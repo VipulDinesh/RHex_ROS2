@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>rhex_gazebo</name>
+  <version>0.0.1</version>
+  <description>Gazebo simulation package for RHex robot</description>
+
+  <maintainer email="vipul@todo.todo">vipul</maintainer>
+  <license>MIT</license>
+
+  <!-- Build tools -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- Core dependencies -->
+  <depend>ros_gz</depend>
+  <depend>ros_gz_sim</depend>
+  <depend>ros_gz_bridge</depend>
+  <depend>rhex_description</depend>
+  <depend>ros2launch</depend>
+  <depend>xacro</depend>
+
+  <!-- Optional visualization -->
+  <exec_depend>rviz2</exec_depend>
+
+  <!-- Test -->
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

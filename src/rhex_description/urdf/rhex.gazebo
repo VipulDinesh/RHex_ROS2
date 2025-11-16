@@ -1,0 +1,125 @@
+<?xml version="1.0" ?>
+<robot name="rhex" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<xacro:property name="body_color" value="Gazebo/Silver" />
+
+<gazebo reference="base_link">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+  <gravity>true</gravity>
+</gazebo>
+
+<gazebo reference="leg_FR_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="leg_MR_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="leg_RR_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="leg_RL_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="leg_ML_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="leg_FL_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<ros2_control name="rhex_hw" type="system">
+  <hardware>
+    <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+  </hardware>
+
+  <!-- Joints -->
+  <joint name="L_FL">
+    <command_interfaces>
+      <interface>position</interface>
+    </command_interfaces>
+    <state_interfaces>
+      <interface>position</interface>
+      <interface>velocity</interface>
+    </state_interfaces>
+  </joint>
+
+  <joint name="L_FR">
+    <command_interfaces>
+      <interface>position</interface>
+    </command_interfaces>
+    <state_interfaces>
+      <interface>position</interface>
+      <interface>velocity</interface>
+    </state_interfaces>
+  </joint>
+
+  <joint name="L_ML">
+    <command_interfaces>
+      <interface>position</interface>
+    </command_interfaces>
+    <state_interfaces>
+      <interface>position</interface>
+      <interface>velocity</interface>
+    </state_interfaces>
+  </joint>
+
+  <joint name="L_MR">
+    <command_interfaces>
+      <interface>position</interface>
+    </command_interfaces>
+    <state_interfaces>
+      <interface>position</interface>
+      <interface>velocity</interface>
+    </state_interfaces>
+  </joint>
+
+  <joint name="L_RL">
+    <command_interfaces>
+      <interface>position</interface>
+    </command_interfaces>
+    <state_interfaces>
+      <interface>position</interface>
+      <interface>velocity</interface>
+    </state_interfaces>
+  </joint>
+
+  <joint name="L_RR">
+    <command_interfaces>
+      <interface>position</interface>
+    </command_interfaces>
+    <state_interfaces>
+      <interface>position</interface>
+      <interface>velocity</interface>
+    </state_interfaces>
+  </joint>
+
+</ros2_control>
+
+
+</robot>
