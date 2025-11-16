@@ -1,1 +1,1 @@
-RHex Bot Simulation using ROS2 Jazzy
+RHex Bot Simulation using ROS2 Jazzy and Gazebo Harmonic
