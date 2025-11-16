@@ -55,7 +55,7 @@
 
 <ros2_control name="rhex_hw" type="system">
   <hardware>
-    <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+    <plugin>gz_ros2_control/GazeboSystem</plugin>
   </hardware>
 
   <!-- Joints -->

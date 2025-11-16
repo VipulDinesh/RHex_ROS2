@@ -6,9 +6,7 @@ from ament_index_python.packages import get_package_share_directory
 import os
 import xacro
 
-
 def generate_launch_description():
-
     # --- Package paths ---
     pkg_rhex_desc = get_package_share_directory('rhex_description')
     pkg_rhex_gazebo = get_package_share_directory('rhex_gazebo')
@@ -24,7 +22,7 @@ def generate_launch_description():
     doc = xacro.process_file(xacro_file)
     robot_description_config = doc.toxml()
 
-    # --- Start Gazebo (IMPORTANT: -r needed for auto-start) ---
+    # --- Start Gazebo ---
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')
@@ -32,29 +30,15 @@ def generate_launch_description():
         launch_arguments={'gz_args': f"-r {world_file}"}.items()
     )
 
-    # --- Spawn robot ---
+    # --- Spawn RHex in Gazebo ---
     spawn_rhex = Node(
         package='ros_gz_sim',
         executable='create',
-        arguments=[
-            '-name', 'rhex',
-            '-string', robot_description_config
-        ],
+        arguments=['-name', 'rhex', '-string', robot_description_config],
         output='screen'
     )
 
-    # --- ros2_control controller manager ---
-    controller_manager_node = Node(
-        package='controller_manager',
-        executable='ros2_control_node',
-        parameters=[
-            {'robot_description': robot_description_config},
-            controller_yaml
-        ],
-        output='screen'
-    )
-
-    # --- Robot State Publisher ---
+    # --- Robot State Publisher (publishes /robot_description) ---
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
@@ -66,17 +50,22 @@ def generate_launch_description():
     joint_state_broadcaster_spawner = Node(
         package='controller_manager',
         executable='spawner',
-        arguments=[
-            'joint_state_broadcaster',
-            '--controller-manager', '/controller_manager'
-        ],
+        arguments=['joint_state_broadcaster', '--controller-manager', '/controller_manager'],
         output='screen'
     )
+
+    position_controller_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['position_controllers', '--controller-manager', '/controller_manager'],
+        output='screen'
+    )
+
 
     return LaunchDescription([
         gazebo,
         spawn_rhex,
-        controller_manager_node,
         robot_state_publisher_node,
-        joint_state_broadcaster_spawner
+        joint_state_broadcaster_spawner,
+        position_controller_spawner
     ])
