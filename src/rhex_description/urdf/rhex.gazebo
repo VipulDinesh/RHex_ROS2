@@ -5,51 +5,51 @@
 
 <gazebo reference="base_link">
   <material>${body_color}</material>
-  <mu1>10</mu1>
-  <mu2>10</mu2>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
   <selfCollide>true</selfCollide>
   <gravity>true</gravity>
 </gazebo>
 
 <gazebo reference="leg_FR_1">
   <material>${body_color}</material>
-  <mu1>10</mu1>
-  <mu2>10</mu2>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
   <selfCollide>true</selfCollide>
 </gazebo>
 
 <gazebo reference="leg_MR_1">
   <material>${body_color}</material>
-  <mu1>10</mu1>
-  <mu2>10</mu2>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
   <selfCollide>true</selfCollide>
 </gazebo>
 
 <gazebo reference="leg_RR_1">
   <material>${body_color}</material>
-  <mu1>10</mu1>
-  <mu2>10</mu2>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
   <selfCollide>true</selfCollide>
 </gazebo>
 
 <gazebo reference="leg_RL_1">
   <material>${body_color}</material>
-  <mu1>10</mu1>
-  <mu2>10</mu2>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
   <selfCollide>true</selfCollide>
 </gazebo>
 
 <gazebo reference="leg_ML_1">
   <material>${body_color}</material>
-  <mu1>10</mu1>
-  <mu2>10</mu2>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
   <selfCollide>true</selfCollide>
 </gazebo>
 
 <gazebo reference="leg_FL_1">
   <material>${body_color}</material>
-  <mu1>10</mu1>
-  <mu2>10</mu2>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
   <selfCollide>true</selfCollide>
 </gazebo>
 
@@ -106,6 +106,3 @@
 </gazebo>
 
 </robot>
-
-<!-- mu 0.2 to 10 -->
-

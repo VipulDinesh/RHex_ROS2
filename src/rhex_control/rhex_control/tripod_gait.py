@@ -3,46 +3,49 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float64MultiArray
 
-class TripodGait(Node):
+class AlternatingTripodGait(Node):
     def __init__(self):
-        super().__init__('tripod_gait')
+        super().__init__('alternating_tripod_gait')
         self.publisher = self.create_publisher(Float64MultiArray, '/position_controllers/commands', 10)
 
         # Joint order: L_FL, L_FR, L_ML, L_MR, L_RL, L_RR
-        self.joint_positions = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        self.joint_positions = [0.0] * 6
 
         # Tripods
         self.tripod1 = [0, 3, 4]  # FL, MR, RL
         self.tripod2 = [1, 2, 5]  # FR, ML, RR
 
-        self.direction = 1  # Start with tripod1
-        self.increment = 6.28  # Full rotation in radians
+        self.active_tripod = self.tripod1
+        self.increment = 0.05  # radians per timer tick
+        self.timer_period = 0.01  # seconds
+        self.rotation_done = 0.0  # track rotation of active tripod
 
-        self.timer = self.create_timer(3.0, self.update_motion)
-        self.get_logger().info('Tripod gait controller started')
+        self.timer = self.create_timer(self.timer_period, self.update_motion)
+        self.get_logger().info('Alternating tripod gait controller started')
 
     def update_motion(self):
-        # Select active tripod
-        active_tripod = self.tripod1 if self.direction == 1 else self.tripod2
-
-        # Apply increments for active tripod
-        for i in active_tripod:
-            if i % 2 == 0:  # Left side joints: FL, ML, RL
+        # Move only the active tripod
+        for i in self.active_tripod:
+            if i % 2 == 0:  # Left side
                 self.joint_positions[i] -= self.increment
-            else:  # Right side joints: FR, MR, RR
+            else:  # Right side
                 self.joint_positions[i] += self.increment
 
-        # Publish updated positions
+        self.rotation_done += self.increment  # Track active tripod rotation
+
+        # Publish joint positions
         msg = Float64MultiArray()
         msg.data = self.joint_positions
         self.publisher.publish(msg)
 
-        self.get_logger().info(f'Moved {"Tripod 1" if self.direction == 1 else "Tripod 2"}')
-        self.direction *= -1  # Alternate tripods
+        # Switch tripod after full rotation (~6.28 rad)
+        if self.rotation_done >= 6.28:
+            self.rotation_done = 0.0
+            self.active_tripod = self.tripod2 if self.active_tripod == self.tripod1 else self.tripod1
 
 def main(args=None):
     rclpy.init(args=args)
-    node = TripodGait()
+    node = AlternatingTripodGait()
     rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()
