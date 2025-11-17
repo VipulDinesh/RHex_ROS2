@@ -41,7 +41,7 @@ def generate_launch_description():
             '-string', robot_description_config,
             '-x', '0',
             '-y', '0',
-            '-z', '0.5',   # safe height
+            '-z', '0',   # safe height
             '-Y', '0'
         ],
         output='screen'
