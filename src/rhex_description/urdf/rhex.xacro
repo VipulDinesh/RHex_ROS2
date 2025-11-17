@@ -1,221 +1,213 @@
 <?xml version="1.0" ?>
 <robot name="rhex" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find rhex_description)/urdf/materials.xacro" />
-  <xacro:include filename="$(find rhex_description)/urdf/rhex.trans" />
-  <xacro:include filename="$(find rhex_description)/urdf/rhex.gazebo" />
+<xacro:include filename="$(find rhex_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find rhex_description)/urdf/rhex.trans" />
+<xacro:include filename="$(find rhex_description)/urdf/rhex.gazebo" />
+<link name="footprint" />
+<link name="base_link">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0.00026976113326567376 0.0 0.2"/>
+    <mass value="3.703374358474152"/>
+    <inertia ixx="0.020087" ixy="-0.0" ixz="-0.0" iyy="0.090417" iyz="0.0" izz="0.108396"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0.2"/>
+    <geometry>
+      <mesh filename="package://rhex_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0.2"/>
+    <geometry>
+      <mesh filename="package://rhex_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+<joint name="base_joint" type="fixed">
+  <parent link="footprint"/>
+  <child link="base_link"/>
+</joint>
 
-  <!-- footprint and base -->
-  <link name="footprint" />
+<link name="leg_FR_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.0604811121285076 0.0075000000000000205 -0.09500000000000028"/>
+    <mass value="0.024174555469373752"/>
+    <inertia ixx="0.00011" ixy="0.0" ixz="0.0" iyy="0.00013" iyz="-0.0" izz="2.1e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.21 -0.102 -0.0"/>
+    <geometry>
+      <mesh filename="package://rhex_description/meshes/leg_FR_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.21 -0.102 -0.0"/>
+    <geometry>
+      <mesh filename="package://rhex_description/meshes/leg_FR_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
 
-  <link name="base_link">
-    <inertial>
-      <origin rpy="0 0 0" xyz="0.00026976113326567376 0.0 0.2"/>
-      <mass value="3.703374358474152"/>
-      <inertia ixx="0.020087" ixy="-0.0" ixz="-0.0" iyy="0.090417" iyz="0.0" izz="0.108396"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0.2"/>
-      <geometry>
-        <mesh filename="package://rhex_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-      <material name="silver"/>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0.2"/>
-      <geometry>
-        <mesh filename="package://rhex_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-    </collision>
-  </link>
+<link name="leg_MR_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.06048111212850748 0.007499999999999868 -0.09500000000000028"/>
+    <mass value="0.024174555469373752"/>
+    <inertia ixx="0.00011" ixy="0.0" ixz="0.0" iyy="0.00013" iyz="0.0" izz="2.1e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.0 -0.117 -0.0"/>
+    <geometry>
+      <mesh filename="package://rhex_description/meshes/leg_MR_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.0 -0.117 -0.0"/>
+    <geometry>
+      <mesh filename="package://rhex_description/meshes/leg_MR_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
 
-  <joint name="base_joint" type="fixed">
-    <parent link="footprint"/>
-    <child link="base_link"/>
-  </joint>
+<link name="leg_RR_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.06048111212850768 0.007499999999999993 -0.09500000000000028"/>
+    <mass value="0.02417455546937379"/>
+    <inertia ixx="0.00011" ixy="0.0" ixz="0.0" iyy="0.00013" iyz="-0.0" izz="2.1e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.21 -0.102 -0.0"/>
+    <geometry>
+      <mesh filename="package://rhex_description/meshes/leg_RR_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.21 -0.102 -0.0"/>
+    <geometry>
+      <mesh filename="package://rhex_description/meshes/leg_RR_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
 
-  <!-- NOTE: manipulator chain removed here (torso_1, shoulder_1, upperarm_1, forearm_1, wrist_*, palm_*, endeffectors removed) -->
+<link name="leg_RL_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.06048111212850768 -0.0075000000000000205 -0.09500000000000028"/>
+    <mass value="0.02417455546937379"/>
+    <inertia ixx="0.00011" ixy="0.0" ixz="0.0" iyy="0.00013" iyz="0.0" izz="2.1e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.21 0.102 -0.0"/>
+    <geometry>
+      <mesh filename="package://rhex_description/meshes/leg_RL_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.21 0.102 -0.0"/>
+    <geometry>
+      <mesh filename="package://rhex_description/meshes/leg_RL_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
 
-  <!-- Legs -->
-  <link name="leg_FR_1">
-    <inertial>
-      <origin rpy="0 0 0" xyz="-0.0604811121285076 0.0075000000000000205 -0.09500000000000028"/>
-      <mass value="0.024174555469373752"/>
-      <inertia ixx="0.00011" ixy="0.0" ixz="0.0" iyy="0.00013" iyz="-0.0" izz="2.1e-05"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="-0.21 -0.102 -0.0"/>
-      <geometry>
-        <mesh filename="package://rhex_description/meshes/leg_FR_1.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-      <material name="silver"/>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="-0.21 -0.102 -0.0"/>
-      <geometry>
-        <mesh filename="package://rhex_description/meshes/leg_FR_1.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-    </collision>
-  </link>
+<link name="leg_ML_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.06048111212850748 -0.007499999999999882 -0.09500000000000028"/>
+    <mass value="0.024174555469373752"/>
+    <inertia ixx="0.00011" ixy="-0.0" ixz="0.0" iyy="0.00013" iyz="-0.0" izz="2.1e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.0 0.117 -0.0"/>
+    <geometry>
+      <mesh filename="package://rhex_description/meshes/leg_ML_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.0 0.117 -0.0"/>
+    <geometry>
+      <mesh filename="package://rhex_description/meshes/leg_ML_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
 
-  <link name="leg_MR_1">
-    <inertial>
-      <origin rpy="0 0 0" xyz="-0.06048111212850748 0.007499999999999868 -0.09500000000000028"/>
-      <mass value="0.024174555469373752"/>
-      <inertia ixx="0.00011" ixy="0.0" ixz="0.0" iyy="0.00013" iyz="0.0" izz="2.1e-05"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="-0.0 -0.117 -0.0"/>
-      <geometry>
-        <mesh filename="package://rhex_description/meshes/leg_MR_1.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-      <material name="silver"/>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="-0.0 -0.117 -0.0"/>
-      <geometry>
-        <mesh filename="package://rhex_description/meshes/leg_MR_1.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-    </collision>
-  </link>
+<link name="leg_FL_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.0604811121285076 -0.007500000000000076 -0.09500000000000028"/>
+    <mass value="0.024174555469373752"/>
+    <inertia ixx="0.00011" ixy="-0.0" ixz="0.0" iyy="0.00013" iyz="0.0" izz="2.1e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.21 0.102 -0.0"/>
+    <geometry>
+      <mesh filename="package://rhex_description/meshes/leg_FL_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.21 0.102 -0.0"/>
+    <geometry>
+      <mesh filename="package://rhex_description/meshes/leg_FL_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
 
-  <link name="leg_RR_1">
-    <inertial>
-      <origin rpy="0 0 0" xyz="-0.06048111212850768 0.007499999999999993 -0.09500000000000028"/>
-      <mass value="0.02417455546937379"/>
-      <inertia ixx="0.00011" ixy="0.0" ixz="0.0" iyy="0.00013" iyz="-0.0" izz="2.1e-05"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0.21 -0.102 -0.0"/>
-      <geometry>
-        <mesh filename="package://rhex_description/meshes/leg_RR_1.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-      <material name="silver"/>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0.21 -0.102 -0.0"/>
-      <geometry>
-        <mesh filename="package://rhex_description/meshes/leg_RR_1.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-    </collision>
-  </link>
+<joint name="L_FR" type="continuous">
+  <origin rpy="0 0 0" xyz="0.21 0.102 0.2"/>
+  <parent link="base_link"/>
+  <child link="leg_FR_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+  <limit effort="30" velocity="4"/>
+  <joint_properties damping="1.0" friction="1.0"/>
+</joint>
 
-  <link name="leg_RL_1">
-    <inertial>
-      <origin rpy="0 0 0" xyz="-0.06048111212850768 -0.0075000000000000205 -0.09500000000000028"/>
-      <mass value="0.02417455546937379"/>
-      <inertia ixx="0.00011" ixy="0.0" ixz="0.0" iyy="0.00013" iyz="0.0" izz="2.1e-05"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0.21 0.102 -0.0"/>
-      <geometry>
-        <mesh filename="package://rhex_description/meshes/leg_RL_1.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-      <material name="silver"/>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0.21 0.102 -0.0"/>
-      <geometry>
-        <mesh filename="package://rhex_description/meshes/leg_RL_1.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-    </collision>
-  </link>
+<joint name="L_MR" type="continuous">
+  <origin rpy="0 0 0" xyz="0.0 0.117 0.2"/>
+  <parent link="base_link"/>
+  <child link="leg_MR_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+  <limit effort="30" velocity="4"/>
+  <joint_properties damping="1.0" friction="1.0"/>
+</joint>
 
-  <link name="leg_ML_1">
-    <inertial>
-      <origin rpy="0 0 0" xyz="-0.06048111212850748 -0.007499999999999882 -0.09500000000000028"/>
-      <mass value="0.024174555469373752"/>
-      <inertia ixx="0.00011" ixy="-0.0" ixz="0.0" iyy="0.00013" iyz="-0.0" izz="2.1e-05"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="-0.0 0.117 -0.0"/>
-      <geometry>
-        <mesh filename="package://rhex_description/meshes/leg_ML_1.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-      <material name="silver"/>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="-0.0 0.117 -0.0"/>
-      <geometry>
-        <mesh filename="package://rhex_description/meshes/leg_ML_1.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-    </collision>
-  </link>
+<joint name="L_RR" type="continuous">
+  <origin rpy="0 0 0" xyz="-0.21 0.102 0.2"/>
+  <parent link="base_link"/>
+  <child link="leg_RR_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+  <limit effort="30" velocity="4"/>
+  <joint_properties damping="1.0" friction="1.0"/>
+</joint>
 
-  <link name="leg_FL_1">
-    <inertial>
-      <origin rpy="0 0 0" xyz="-0.0604811121285076 -0.007500000000000076 -0.09500000000000028"/>
-      <mass value="0.024174555469373752"/>
-      <inertia ixx="0.00011" ixy="-0.0" ixz="0.0" iyy="0.00013" iyz="0.0" izz="2.1e-05"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="-0.21 0.102 -0.0"/>
-      <geometry>
-        <mesh filename="package://rhex_description/meshes/leg_FL_1.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-      <material name="silver"/>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="-0.21 0.102 -0.0"/>
-      <geometry>
-        <mesh filename="package://rhex_description/meshes/leg_FL_1.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-    </collision>
-  </link>
+<joint name="L_RL" type="continuous">
+  <origin rpy="0 0 0" xyz="-0.21 -0.102 0.2"/>
+  <parent link="base_link"/>
+  <child link="leg_RL_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+  <limit effort="30" velocity="4"/>
+  <joint_properties damping="1.0" friction="1.0"/>
+</joint>
 
-  <!-- Leg joints -->
-  <joint name="L_FR" type="continuous">
-    <origin rpy="0 0 0" xyz="0.21 0.102 0.2"/>
-    <parent link="base_link"/>
-    <child link="leg_FR_1"/>
-    <axis xyz="0.0 1.0 0.0"/>
-    <limit effort="30" velocity="4"/>
-    <joint_properties damping="1.0" friction="1.0"/>
-  </joint>
+<joint name="L_ML" type="continuous">
+  <origin rpy="0 0 0" xyz="0.0 -0.117 0.2"/>
+  <parent link="base_link"/>
+  <child link="leg_ML_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+  <limit effort="30" velocity="4"/>
+  <joint_properties damping="1.0" friction="1.0"/>
+</joint>
 
-  <joint name="L_MR" type="continuous">
-    <origin rpy="0 0 0" xyz="0.0 0.117 0.2"/>
-    <parent link="base_link"/>
-    <child link="leg_MR_1"/>
-    <axis xyz="0.0 1.0 0.0"/>
-    <limit effort="30" velocity="4"/>
-    <joint_properties damping="1.0" friction="1.0"/>
-  </joint>
-
-  <joint name="L_RR" type="continuous">
-    <origin rpy="0 0 0" xyz="-0.21 0.102 0.2"/>
-    <parent link="base_link"/>
-    <child link="leg_RR_1"/>
-    <axis xyz="0.0 1.0 0.0"/>
-    <limit effort="30" velocity="4"/>
-    <joint_properties damping="1.0" friction="1.0"/>
-  </joint>
-
-  <joint name="L_RL" type="continuous">
-    <origin rpy="0 0 0" xyz="-0.21 -0.102 0.2"/>
-    <parent link="base_link"/>
-    <child link="leg_RL_1"/>
-    <axis xyz="0.0 -1.0 0.0"/>
-    <limit effort="30" velocity="4"/>
-    <joint_properties damping="1.0" friction="1.0"/>
-  </joint>
-
-  <joint name="L_ML" type="continuous">
-    <origin rpy="0 0 0" xyz="0.0 -0.117 0.2"/>
-    <parent link="base_link"/>
-    <child link="leg_ML_1"/>
-    <axis xyz="0.0 -1.0 0.0"/>
-    <limit effort="30" velocity="4"/>
-    <joint_properties damping="1.0" friction="1.0"/>
-  </joint>
-
-  <joint name="L_FL" type="continuous">
-    <origin rpy="0 0 0" xyz="0.21 -0.102 0.2"/>
-    <parent link="base_link"/>
-    <child link="leg_FL_1"/>
-    <axis xyz="0.0 -1.0 0.0"/>
-    <limit effort="30" velocity="4"/>
-    <joint_properties damping="1.0" friction="1.0"/>
-  </joint>
+<joint name="L_FL" type="continuous">
+  <origin rpy="0 0 0" xyz="0.21 -0.102 0.2"/>
+  <parent link="base_link"/>
+  <child link="leg_FL_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+  <limit effort="30" velocity="4"/>
+  <joint_properties damping="1.0" friction="1.0"/>
+</joint>
 
 </robot>

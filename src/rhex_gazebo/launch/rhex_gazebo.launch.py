@@ -38,10 +38,15 @@ def generate_launch_description():
         executable='create',
         arguments=[
             '-name', 'rhex',
-            '-string', robot_description_config
+            '-string', robot_description_config,
+            '-x', '0',
+            '-y', '0',
+            '-z', '0',   # safe spawn on ground
+            '-Y', '0'
         ],
         output='screen'
     )
+
 
     # --- ros2_control controller manager ---
     controller_manager_node = Node(
