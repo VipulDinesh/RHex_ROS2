@@ -1,0 +1,221 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="default">
+
+    <!-- A simple ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- A light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- Stairs -->
+    <include>
+      <uri>model://stairs</uri>
+      <pose>0 -5.5 0 0 0 0</pose>
+
+    </include>
+    <include>
+      <uri>model://wall</uri>
+      <pose>0.24 -1.58 0 0 0 0</pose>
+
+    </include>
+
+    <model name="ramp_10">
+      <pose>2 2.95 0 0 0 -1.57</pose>
+      <link name="link">
+        <!-- Visual element for rendering -->
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://ramp/ramp_10.stl</uri>
+              <scale>0.0015 0.0015 0.0015</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.1 0.1 0.1 1.0</ambient>
+            <diffuse>0.8 0.8 0.8 1.0</diffuse>
+            <specular>0.0 0.0 0.0 1.0</specular>
+            <emissive>0.0 0.0 0.0 1.0</emissive>
+          </material>
+        </visual>
+        <!-- Collision element for physics interactions -->
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://ramp/ramp_10.stl</uri>
+              <scale>0.0015 0.0015 0.0015</scale>
+            </mesh>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100.0</mu>
+                <mu2>100.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+      </link>
+      <static>true</static>
+    </model>
+    <model name="ramp_15">
+      <pose>-2.6 2.95 0 0 0 -1.57</pose>
+      <link name="link">
+        <!-- Visual element for rendering -->
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://ramp/ramp_15.stl</uri>
+              <scale>0.0015 0.0015 0.0015</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.1 0.1 0.1 1.0</ambient>
+            <diffuse>0.8 0.8 0.8 1.0</diffuse>
+            <specular>0.0 0.0 0.0 1.0</specular>
+            <emissive>0.0 0.0 0.0 1.0</emissive>
+          </material>
+        </visual>
+        <!-- Collision element for physics interactions -->
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://ramp/ramp_15.stl</uri>
+              <scale>0.0015 0.0015 0.0015</scale>
+            </mesh>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100.0</mu>
+                <mu2>100.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+      </link>
+      <static>true</static>
+    </model>
+    <model name="ramp_20">
+      <pose>4.29 -0.95 0 0 0 0</pose>
+      <link name="link">
+        <!-- Visual element for rendering -->
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://ramp/ramp_20.stl</uri>
+              <scale>0.0015 0.0015 0.0015</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.1 0.1 0.1 1.0</ambient>
+            <diffuse>0.8 0.8 0.8 1.0</diffuse>
+            <specular>0.0 0.0 0.0 1.0</specular>
+            <emissive>0.0 0.0 0.0 1.0</emissive>
+          </material>
+        </visual>
+        <!-- Collision element for physics interactions -->
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://ramp/ramp_20.stl</uri>
+              <scale>0.0015 0.0015 0.0015</scale>
+            </mesh>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100.0</mu>
+                <mu2>100.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+      </link>
+      <static>true</static>
+    </model>
+    <model name="ramp_25">
+      <pose>4.3 -4.91 0 0 0 0</pose>
+      <link name="link">
+        <!-- Visual element for rendering -->
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://ramp/ramp_25.stl</uri>
+              <scale>0.0015 0.0015 0.0015</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.1 0.1 0.1 1.0</ambient>
+            <diffuse>0.8 0.8 0.8 1.0</diffuse>
+            <specular>0.0 0.0 0.0 1.0</specular>
+            <emissive>0.0 0.0 0.0 1.0</emissive>
+          </material>
+        </visual>
+        <!-- Collision element for physics interactions -->
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://ramp/ramp_25.stl</uri>
+              <scale>0.0015 0.0015 0.0015</scale>
+            </mesh>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100.0</mu>
+                <mu2>100.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+      </link>
+      <static>true</static>
+    </model>
+
+    <!-- Define the STL model -->
+    <model name="surface">
+      <pose>-6.4 -4 -0.6 0 0 0</pose> <!-- Position the model slightly above the ground plane -->
+      <link name="link">
+        <!-- Visual element for rendering -->
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://surface/surface.stl</uri>
+              <scale>0.05 0.05 0.05</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.1 0.1 0.1 1.0</ambient>
+            <diffuse>0.8 0.8 0.8 1.0</diffuse>
+            <specular>0.0 0.0 0.0 1.0</specular>
+            <emissive>0.0 0.0 0.0 1.0</emissive>
+          </material>
+        </visual>
+        <!-- Collision element for physics interactions -->
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://surface/surface.stl</uri>
+              <scale>0.05 0.05 0.05</scale>
+            </mesh>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100.0</mu> <!-- Maximum friction value -->
+                <mu2>100.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+      </link>
+      <static>true</static>
+    </model>
+
+
+  </world>
+</sdf>

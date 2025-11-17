@@ -14,7 +14,7 @@
 
     <!-- Ground plane -->
     <include>
-      <uri>file:///home/vipul/Downloads/ground_plane</uri>
+      <uri>package:///rhex_gazebo/models/ground_plane</uri>
     </include>
 
     <!-- Optional friction tuning for ground -->
