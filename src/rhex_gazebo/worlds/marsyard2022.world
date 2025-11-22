@@ -32,7 +32,7 @@
     </scene>
 
     <include>
-      <uri>model://marsyard2022_terrain</uri>
+      <uri>models://marsyard2022_terrain</uri>
     </include>
 
   </world>

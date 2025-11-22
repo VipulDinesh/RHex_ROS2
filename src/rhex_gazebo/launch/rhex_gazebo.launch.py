@@ -17,7 +17,7 @@ def generate_launch_description():
 
     # --- Files ---
     xacro_file = os.path.join(pkg_rhex_desc, 'urdf', 'rhex.xacro')
-    world_file = os.path.join(pkg_rhex_gazebo, 'worlds', 'empty.world')
+    world_file = os.path.join(pkg_rhex_gazebo, 'worlds', 'combined.world')
     controller_yaml = os.path.join(pkg_rhex_control, 'config', 'rhex_controller.yaml')
 
     # --- Convert Xacro to URDF ---

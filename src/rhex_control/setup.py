@@ -27,6 +27,7 @@ data_files=[
     entry_points={
         'console_scripts': [
             'tripod_gait = rhex_control.tripod_gait:main',
+            'teleop_control = rhex_control.teleop_control:main'
     ],
     },
 )
